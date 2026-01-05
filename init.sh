@@ -5,6 +5,8 @@ export PATH_TO_SCRIPTS=~/shell-scripts
 echo "🔌 Initializing environment..."
 
 source $PATH_TO_SCRIPTS/javascript.sh
+source $PATH_TO_SCRIPTS/ai.sh
+source $PATH_TO_SCRIPTS/java.sh
 source $PATH_TO_SCRIPTS/shell.sh
 source $PATH_TO_SCRIPTS/tmux.sh
 source $PATH_TO_SCRIPTS/homebrew.sh

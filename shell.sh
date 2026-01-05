@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export COLOR_DEF='%f'
 export COLOR_USR='%F{243}'
 export COLOR_DIR='%F{197}'

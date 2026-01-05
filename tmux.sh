@@ -1,5 +1,5 @@
 #!/bin/bash
 
-tmux set -g mouse on
+tmux source-file ~/.config/tmux/.tmux.config
 
 echo "✅ Initialized Tmux"
