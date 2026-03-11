@@ -14,5 +14,6 @@ source $PATH_TO_SCRIPTS/alias.sh
 source $PATH_TO_SCRIPTS/search.sh
 source $PATH_TO_SCRIPTS/git.sh
 source $PATH_TO_SCRIPTS/functions.sh
+source $PATH_TO_SCRIPTS/arduino.sh
 
 echo "🛠️ Loaded Scripts"
