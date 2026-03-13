@@ -1,19 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export PATH_TO_SCRIPTS=~/shell-scripts
 
 echo "🔌 Initializing environment..."
 
-source $PATH_TO_SCRIPTS/javascript.sh
-source $PATH_TO_SCRIPTS/ai.sh
-source $PATH_TO_SCRIPTS/java.sh
-source $PATH_TO_SCRIPTS/shell.sh
-source $PATH_TO_SCRIPTS/tmux.sh
-source $PATH_TO_SCRIPTS/homebrew.sh
-source $PATH_TO_SCRIPTS/alias.sh
-source $PATH_TO_SCRIPTS/search.sh
-source $PATH_TO_SCRIPTS/git.sh
-source $PATH_TO_SCRIPTS/functions.sh
-source $PATH_TO_SCRIPTS/arduino.sh
+for script in \
+  javascript.sh \
+  ai.sh \
+  java.sh \
+  shell.sh \
+  tmux.sh \
+  homebrew.sh \
+  alias.sh \
+  search.sh \
+  git.sh \
+  functions.sh \
+  arduino.sh
+do
+  file="$PATH_TO_SCRIPTS/$script"
+
+  [ -f "$file" ] && . "$file"
+done
 
 echo "🛠️ Loaded Scripts"
