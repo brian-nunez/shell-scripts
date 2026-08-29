@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-CURRENT_SHELL="${SHELL##*/}"
-
-case "$CURRENT_SHELL" in
-  zsh)
-    [ -f "$HOME/shell-scripts/shell.zsh.sh" ] && . "$HOME/shell-scripts/shell.zsh.sh"
-    ;;
-  bash)
-    [ -f "$HOME/shell-scripts/shell.bash.sh" ] && . "$HOME/shell-scripts/shell.bash.sh"
-    ;;
-esac
-
+if [ -n "${ZSH_VERSION:-}" ]; then
+  [ -f "$SHELL_SCRIPTS_DIR/shell.zsh.sh" ] && . "$SHELL_SCRIPTS_DIR/shell.zsh.sh"
+elif [ -n "${BASH_VERSION:-}" ]; then
+  [ -f "$SHELL_SCRIPTS_DIR/shell.bash.sh" ] && . "$SHELL_SCRIPTS_DIR/shell.bash.sh"
+fi

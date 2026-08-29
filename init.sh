@@ -1,28 +1,42 @@
 #!/usr/bin/env bash
 
-export PATH_TO_SCRIPTS=~/shell-scripts
+SHELL_SCRIPTS_DIR="$HOME/shell-scripts"
+
+_shell_scripts_prepend_path() {
+  [ -n "$1" ] || return 0
+
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1${PATH:+:$PATH}" ;;
+  esac
+
+  export PATH
+}
 
 echo "🔌 Initializing environment..."
 
-for script in \
+for shell_scripts_name in \
+  homebrew.sh \
+  shell.sh \
   javascript.sh \
   ai.sh \
   java.sh \
-  shell.sh \
-  tmux.sh \
-  homebrew.sh \
-  alias.sh \
-  search.sh \
-  git.sh \
-  functions.sh \
+  go.sh \
+  ruby.sh \
   arduino.sh \
   docker.sh \
-  ruby.sh \
+  tmux.sh \
+  functions.sh \
+  search.sh \
+  git.sh \
+  alias.sh \
   secrets.sh
 do
-  file="$PATH_TO_SCRIPTS/$script"
-
-  [ -f "$file" ] && . "$file"
+  shell_scripts_file="$SHELL_SCRIPTS_DIR/$shell_scripts_name"
+  [ -f "$shell_scripts_file" ] && . "$shell_scripts_file"
 done
+
+unset shell_scripts_file shell_scripts_name SHELL_SCRIPTS_DIR
+unset -f _shell_scripts_prepend_path 2>/dev/null || true
 
 echo "🛠️ Loaded Scripts"

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 if [ -x "/opt/homebrew/bin/brew" ]; then
-  # loads homebrew
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  case ":$PATH:" in
+    *:/opt/homebrew/bin:*) ;;
+    *) eval "$(/opt/homebrew/bin/brew shellenv)" ;;
+  esac
 fi
-
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 echo "✅ Initialized Brew"

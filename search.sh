@@ -2,24 +2,34 @@
 
 alias gtg="gotogit"
 
-function goto() {
+goto() {
   local dir
-  dir=$(find ~/Documents/workspace -path "*/node_modules/*" -prune -o -type d -print | fzf)
-  if [ -n "$dir" ]; then
-    cd "$dir"
+
+  command -v fzf >/dev/null 2>&1 || return 127
+
+  if [ -d "$HOME/Documents/workspace" ]; then
+    dir=$(find "$HOME/Documents/workspace" -path "*/node_modules/*" -prune -o -type d -print | fzf)
+    if [ -n "$dir" ]; then
+      cd "$dir"
+    fi
   fi
 }
 
-function gotogit() {
-  searchDir="$HOME/Documents/workspace"
-  if [ -n "$1" ]; then
-    searchDir="$1"
+gotogit() {
+  local dir search_dir
+
+  command -v fzf >/dev/null 2>&1 || return 127
+
+  search_dir="$HOME/Documents/workspace"
+  if [ -n "${1:-}" ]; then
+    search_dir="$1"
   fi
-  out=$(readlink -f "$searchDir")
-  local dir
-  dir=$(find "$out" -path "*/node_modules" -prune -o -type d -name ".git" -print | sed 's|/\.git||' | fzf)
-  if [ -n "$dir" ]; then
-    cd "$dir"
+
+  if [ -d "$search_dir" ]; then
+    dir=$(find "$search_dir" -path "*/node_modules" -prune -o -type d -name ".git" -print | sed 's|/\.git||' | fzf)
+    if [ -n "$dir" ]; then
+      cd "$dir"
+    fi
   fi
 }
 

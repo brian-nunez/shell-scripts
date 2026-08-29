@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
-# Source rc file in current terminal
-alias s='source $HOME/.${SHELL##*/}rc'
+if [ -n "${ZSH_VERSION:-}" ]; then
+  alias s='source "$HOME/.zshrc"'
+elif [ -n "${BASH_VERSION:-}" ]; then
+  alias s='source "$HOME/.bashrc"'
+fi
 
 # Use NeoVim with short-hand alias
-alias vim="nvim"
+alias vim='nvim'
 
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+if [ "$(uname -s)" = "Darwin" ] && [ -f "/Applications/Tailscale.app/Contents/MacOS/Tailscale" ]; then
+  alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+fi
 
 echo "✅ Initialized Aliases"

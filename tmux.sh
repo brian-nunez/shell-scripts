@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-tmux source-file ~/.config/tmux/.tmux.config
+if [ -n "${TMUX:-}" ] && [ -r "$HOME/.config/tmux/.tmux.config" ]; then
+  tmux source-file "$HOME/.config/tmux/.tmux.config"
+fi
 
 echo "✅ Initialized Tmux"

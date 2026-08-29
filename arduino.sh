@@ -1,5 +1,3 @@
-#!/bin/bash
-
-[ -d "/opt/homebrew/bin" ] && export PATH="/opt/homebrew/bin/arduino-cli:$PATH"
+#!/usr/bin/env bash
 
 echo "✅ Initialized Arduino"

@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 
-[ -d "/usr/libexec/java_home" ] && export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+if [ "$(uname -s)" = "Darwin" ]; then
+  if [ -x "/usr/libexec/java_home" ]; then
+    java_home=$(/usr/libexec/java_home -v 21 2>/dev/null) || java_home=''
+    [ -n "$java_home" ] && export JAVA_HOME="$java_home"
+    unset java_home
+  fi
 
-echo "✅ Initialized JavaScript Environment"
+  [ -d "/opt/homebrew/opt/openjdk@21/bin" ] && _shell_scripts_prepend_path "/opt/homebrew/opt/openjdk@21/bin"
 
+  if [ -d "/opt/homebrew/opt/openjdk@21/include" ]; then
+    case " ${CPPFLAGS:-} " in
+      *' -I/opt/homebrew/opt/openjdk@21/include '*) ;;
+      *) CPPFLAGS="${CPPFLAGS:+$CPPFLAGS }-I/opt/homebrew/opt/openjdk@21/include" ;;
+    esac
+    export CPPFLAGS
+  fi
+fi
+
+echo "✅ Initialized Java Environment"
