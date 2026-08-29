@@ -15,7 +15,10 @@ for script in \
   search.sh \
   git.sh \
   functions.sh \
-  arduino.sh
+  arduino.sh \
+  docker.sh \
+  ruby.sh \
+  secrets.sh
 do
   file="$PATH_TO_SCRIPTS/$script"
 
