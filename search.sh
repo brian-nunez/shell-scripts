@@ -8,7 +8,10 @@ goto() {
   command -v fzf >/dev/null 2>&1 || return 127
 
   if [ -d "$HOME/Documents/workspace" ]; then
-    dir=$(find "$HOME/Documents/workspace" -path "*/node_modules/*" -prune -o -type d -print | fzf)
+    dir=$(find "$HOME/Documents/workspace" \
+      \( -name "node_modules" -o -name ".venv" -o -name "venv" \) -prune \
+      -o -type d -print | fzf)
+
     if [ -n "$dir" ]; then
       cd "$dir"
     fi
