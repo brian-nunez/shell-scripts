@@ -29,6 +29,8 @@ for shell_scripts_name in \
   functions.sh \
   search.sh \
   git.sh \
+  ghidra.sh \
+  artcraft.sh \
   alias.sh \
   secrets.sh
 do
