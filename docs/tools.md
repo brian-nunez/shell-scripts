@@ -14,6 +14,10 @@
 - `gtg` calls `gotogit`.
 - `air` launches the Go Air executable from the active GOPATH.
 - `tailscale` launches the macOS application binary when the App Store application is installed.
+- `ghidra` launches the Darwin Ghidra installation when it exists at `~/Applications/ghidra_12.1.4_PUBLIC/ghidraRun`.
+- `photocraft`, `deckcraft`, `figcraft`, `gridcraft`, `pdfcraft`, and `wordcraft` launch the corresponding Darwin Artcraft CLI when installed.
+
+Ghidra and Artcraft aliases are currently enabled only on Darwin. Linux sections are reserved in `ghidra.sh` and `artcraft.sh` for future paths and aliases.
 
 ## Tool Initialization
 
